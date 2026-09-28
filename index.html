@@ -14,23 +14,21 @@
   --glass:rgba(255,255,255,.5);--gb:rgba(255,255,255,.85);
   --cu:#b8714a;--cu2:#e0a27a;--sage:#7f9d8b;--rec:#d2554a;
   --bg1:#f1ece2;--bg2:#e1e6dc;--bg3:#c6d3ca;
-  --btn-ink:#f3efe6;
-  --panel-inner:#ffffff;
+  --btn-ink:#f3efe6;--panel-inner:#ffffff;
   --shadow-a:rgba(28,36,32,.4);
   --serif:'Cormorant Garamond',Georgia,serif;
   --sans:'DM Sans',system-ui,sans-serif;
   --mono:'DM Mono',Consolas,monospace;
-  color-scheme: light;
+  color-scheme:light;
 }
 html[data-theme="dark"]{
   --ink:#e8ede8;--mut:#9aa8a0;--line:rgba(232,237,232,.14);
   --glass:rgba(28,36,32,.5);--gb:rgba(255,255,255,.09);
   --cu:#e0a27a;--cu2:#f0c3a1;--sage:#8fb0a0;--rec:#e26a5e;
   --bg1:#141a18;--bg2:#1a2320;--bg3:#0e1412;
-  --btn-ink:#141a18;
-  --panel-inner:#1f2823;
+  --btn-ink:#141a18;--panel-inner:#1f2823;
   --shadow-a:rgba(0,0,0,.6);
-  color-scheme: dark;
+  color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
@@ -84,7 +82,7 @@ nav{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   padding:13px 26px;border-radius:999px;
   font:600 .74rem var(--sans);letter-spacing:.09em;text-transform:uppercase;
-  border:1px solid transparent;cursor:pointer;transition:.25s;position:relative;
+  border:1px solid transparent;cursor:pointer;transition:.25s;
 }
 .btn:hover{transform:translateY(-2px)}
 .btn.p{background:var(--ink);color:var(--btn-ink);box-shadow:0 16px 32px -14px var(--shadow-a)}
@@ -100,7 +98,7 @@ nav{
   transition:background .4s,border-color .4s;
 }
 html[data-theme="dark"] .glass{box-shadow:0 34px 70px -40px var(--shadow-a),inset 0 1px 0 rgba(255,255,255,.05)}
-/* hero */
+
 .hero{min-height:calc(100vh - 80px);display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding-top:50px;padding-bottom:30px}
 @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:0}}
 .hero .lede{font-size:1.12rem;margin-top:26px}
@@ -119,13 +117,13 @@ html[data-theme="dark"] .glass{box-shadow:0 34px 70px -40px var(--shadow-a),inse
 .wave{display:flex;gap:3px;align-items:center;height:26px;margin-top:10px}
 .wave i{flex:1;background:linear-gradient(var(--cu2),var(--cu));border-radius:3px;animation:w 1.2s ease-in-out infinite}
 @keyframes w{0%,100%{height:5px}50%{height:22px}}
-/* stats */
+
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px}
 @media(max-width:800px){.stats{grid-template-columns:1fr 1fr}}
 .stats div{border-top:1px solid var(--line);padding-top:18px}
 .stats b{font:400 3.6rem/1 var(--serif);display:block}
 .stats span{font-size:.86rem;color:var(--mut)}
-/* translator */
+
 .app{margin-top:44px;padding:30px}
 .row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
 .f{display:flex;flex-direction:column;gap:6px;flex:1;min-width:190px}
@@ -135,7 +133,9 @@ select,input[type=password],input[type=text]{
   border:1px solid var(--gb);background:var(--glass);color:var(--ink);
   width:100%;outline:none;transition:.2s;
 }
-html[data-theme="light"] select,html[data-theme="light"] input[type=password],html[data-theme="light"] input[type=text]{background:rgba(255,255,255,.75)}
+html[data-theme="light"] select,
+html[data-theme="light"] input[type=password],
+html[data-theme="light"] input[type=text]{background:rgba(255,255,255,.75)}
 select:focus,input:focus{border-color:var(--cu);box-shadow:0 0 0 4px rgba(184,113,74,.18)}
 .swap{width:46px;height:46px;border-radius:50%;padding:0;flex:none;font-size:1.1rem}
 .tog{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin:18px 0 6px}
@@ -179,7 +179,7 @@ html[data-theme="dark"] .t3{background:rgba(150,120,220,.22);color:#c0aaeb}
 .pend{opacity:.55;font-style:italic}
 .typebox{display:flex;gap:10px;margin-top:16px}
 .err{color:var(--rec);font-size:.84rem;margin-top:8px;min-height:1em}
-/* features / pricing / faq */
+
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:46px}
 @media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
 @media(max-width:540px){.grid{grid-template-columns:1fr}}
@@ -200,6 +200,7 @@ html[data-theme="dark"] .plan.pop li,html[data-theme="dark"] .plan.pop small{col
 .plan li:before{content:'+ ';color:var(--cu);font-weight:700}
 .plan .btn{width:100%}
 .bd{position:absolute;top:-12px;right:26px;background:var(--cu);color:#fff;font:700 .64rem var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:5px 13px;border-radius:20px}
+
 details{border-top:1px solid var(--line);padding:22px 0}
 details:last-child{border-bottom:1px solid var(--line)}
 summary{cursor:pointer;font:500 1.5rem var(--serif);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px}
@@ -211,10 +212,11 @@ details p{color:var(--mut);margin-top:12px;max-width:68ch;font-size:.95rem}
 .close{text-align:center}
 .close h2{margin:0 auto}
 .close .cta{justify-content:center}
+
 footer{margin-top:120px;background:var(--panel-inner);color:var(--ink);padding:56px 0 34px;border-top:1px solid var(--line);transition:background .4s}
 html[data-theme="dark"] footer{background:#0a0f0d}
 footer p{color:var(--mut);font-size:.88rem;margin-top:8px}
-/* reveal */
+
 .rv{opacity:0;transform:translateY(30px);transition:1s cubic-bezier(.2,.8,.2,1)}
 .rv.v{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
@@ -244,7 +246,7 @@ VocaLink
 <a href="#faq">FAQ</a>
 </div>
 <div class="nav-r">
-<button class="theme-btn" id="themeBtn" aria-label="Toggle color scheme" title="Toggle color scheme">🌙</button>
+<button class="theme-btn" id="themeBtn" aria-label="Toggle color scheme" title="Toggle color scheme">&#127769;</button>
 <a class="btn p" href="#try">Try it live</a>
 </div>
 </nav>
@@ -268,10 +270,10 @@ VocaLink
 </div>
 </div>
 <div class="glass stage rv" id="stage">
-<div class="sh"><span class="live"></span>#voice-channel · live</div>
-<div class="m"><small>Marco · Italian</small><p>Sono arrivato, aspetta un attimo.</p><b>I've arrived, wait a moment.</b></div>
-<div class="m"><small>Aiko · Japanese</small><p>もうすぐ始めましょう。</p><b>Let's begin very soon.</b></div>
-<div class="m"><small>Amara · Swahili</small><p>Karibu sana, wote!</p><b>Warm welcome, everyone!</b></div>
+<div class="sh"><span class="live"></span>#voice-channel &middot; live</div>
+<div class="m"><small>Marco &middot; Italian</small><p>Sono arrivato, aspetta un attimo.</p><b>I've arrived, wait a moment.</b></div>
+<div class="m"><small>Aiko &middot; Japanese</small><p>&#12418;&#12358;&#12377;&#12368;&#22987;&#12417;&#12414;&#12375;&#12423;&#12358;&#12290;</p><b>Let's begin very soon.</b></div>
+<div class="m"><small>Amara &middot; Swahili</small><p>Karibu sana, wote!</p><b>Warm welcome, everyone!</b></div>
 <div class="wave" id="wave"></div>
 </div>
 </div>
@@ -309,7 +311,7 @@ VocaLink
 <label for="src">Spoken language</label>
 <select id="src"></select>
 </div>
-<button class="btn g swap" id="swap" type="button" title="Swap languages" aria-label="Swap languages">⇄</button>
+<button class="btn g swap" id="swap" type="button" title="Swap languages" aria-label="Swap languages">&#8646;</button>
 <div class="f">
 <label for="tgt">Translate into</label>
 <select id="tgt"></select>
@@ -319,13 +321,13 @@ VocaLink
 <div class="tog">
 <label class="sw"><input type="checkbox" id="dia" checked><s></s>Speaker labels</label>
 <label class="sw"><input type="checkbox" id="say"><s></s>Read aloud</label>
-<button class="btn g" id="exp" type="button" style="padding:8px 16px">⬇ Export</button>
+<button class="btn g" id="exp" type="button" style="padding:8px 16px">&#11015; Export</button>
 </div>
 
 <p class="hint">Tip: choose "BlackHole 2ch" as input to translate Discord audio. Serve over <b>http://localhost</b> or https for mic access. Chrome or Edge recommended.</p>
 
 <div class="mic">
-<button class="orb" id="go" type="button" aria-label="Start listening">🎙</button>
+<button class="orb" id="go" type="button" aria-label="Start listening">&#127897;</button>
 <div class="sig" id="sig" aria-hidden="true"></div>
 </div>
 
@@ -403,74 +405,11 @@ VocaLink
 <footer>
 <div class="wrap">
 <div class="brand" style="color:inherit">VocaLink</div>
-<p>Real-time voice translation · Deepgram &amp; Google Translate · © 2026 VocaLink</p>
+<p>Real-time voice translation &middot; Deepgram &amp; Google Translate &middot; &copy; 2026 VocaLink</p>
 </div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-/* -------------------------------------------------------------------------
-   Theme: auto-detect + toggle, persisted in localStorage
-------------------------------------------------------------------------- */
-(function(){
-  var root=document.documentElement;
-  var btn=document.getElementById('themeBtn');
-  var stored=null;
-  try{stored=localStorage.getItem('vl_theme')}catch(e){}
-  var prefers=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)');
-  function apply(mode){
-    root.setAttribute('data-theme',mode);
-    if(btn)btn.textContent=mode==='dark'?'☀':'🌙';
-    if(window.__vlTheme)window.__vlTheme(mode);
-  }
-  var initial=stored||(prefers&&prefers.matches?'dark':'light');
-  apply(initial);
-  if(btn)btn.addEventListener('click',function(){
-    var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
-    try{localStorage.setItem('vl_theme',next)}catch(e){}
-    apply(next);
-  });
-  if(prefers&&prefers.addEventListener){
-    prefers.addEventListener('change',function(e){
-      var s=null;try{s=localStorage.getItem('vl_theme')}catch(err){}
-      if(!s)apply(e.matches?'dark':'light');
-    });
-  }
-})();
-</script>
-
-<script>
-/* -------------------------------------------------------------------------
-   Three.js background: all assets framed on-screen, theme-aware palette,
-   pointer-repel physics, no scroll drift.
-------------------------------------------------------------------------- */
-(function(){
-  var canvas=document.getElementById('bg3d');
-  if(!window.THREE||!canvas)return;
-  var renderer;
-  try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});}
-  catch(e){return;}
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
-  renderer.outputEncoding=THREE.sRGBEncoding;
-  renderer.toneMapping=THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure=1.05;
-
-  var scene=new THREE.Scene();
-  var camera=new THREE.PerspectiveCamera(42,1,0.1,200);
-
-  /* Distance chosen so a half-height of ~7.5 units is always visible at 16:9,
-     which keeps the widest asset (x = +/- 10.6) inside the frustum even at 4:3. */
-  camera.position.z=22;
-
-  /* Soft studio environment for reflections. Rebuilt on theme change. */
-  var pmrem=new THREE.PMREMGenerator(renderer);
-  var envScene=new THREE.Scene();
-  function buildEnv(isDark){
-    while(envScene.children.length)envScene.remove(envScene.children[0]);
-    var base=isDark?0x2a3330:0xcfc8bb;
-    envScene.add(new THREE.Mesh(
-      new THREE.SphereGeometry(60,32,16),
-      new THREE.MeshBasicMaterial({color:base,side:THREE.BackSide})
-    ));
-    var lights=isDark
-      ? [[0,30,10,50,18,[1.6,1.4,1.3]],[-32,8,2,16,34,[1.2,1.0,0.9]],[32,-2,-8,14,34,[0.9,1.1,1.3]],[0,-30,4,44,12,[0.5,0.45,
+<script src="app.js"></script>
+</body>
+</html>
