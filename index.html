@@ -1,189 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>VocaLink | Live translation for Discord, in 130+ languages</title>
+<title>VocaLink | Real-time translation. Real conversations.</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%90%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ink:#1c2420;--mut:#5b6961;--line:rgba(28,36,32,.13);
-  --glass:rgba(255,255,255,.5);--gb:rgba(255,255,255,.85);
-  --cu:#b8714a;--cu2:#e0a27a;--sage:#7f9d8b;--rec:#d2554a;
-  --bg1:#f1ece2;--bg2:#e1e6dc;--bg3:#c6d3ca;
-  --btn-ink:#f3efe6;--panel-inner:#ffffff;
-  --shadow-a:rgba(28,36,32,.4);
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'DM Sans',system-ui,sans-serif;
-  --mono:'DM Mono',Consolas,monospace;
-  color-scheme:light;
-}
-html[data-theme="dark"]{
-  --ink:#e8ede8;--mut:#9aa8a0;--line:rgba(232,237,232,.14);
-  --glass:rgba(28,36,32,.5);--gb:rgba(255,255,255,.09);
-  --cu:#e0a27a;--cu2:#f0c3a1;--sage:#8fb0a0;--rec:#e26a5e;
-  --bg1:#141a18;--bg2:#1a2320;--bg3:#0e1412;
-  --btn-ink:#141a18;--panel-inner:#1f2823;
-  --shadow-a:rgba(0,0,0,.6);
-  color-scheme:dark;
-}
+:root{--ink:#1c2420;--mut:#55635b;--line:rgba(28,36,32,.14);--glass:rgba(255,255,255,.55);--gb:rgba(255,255,255,.85);--cu:#b8714a;--cu2:#e0a27a;--rec:#d2554a;--bg1:#f1ece2;--bg2:#e1e6dc;--bg3:#c6d3ca;--btn-ink:#f3efe6;--field:rgba(255,255,255,.8);--sh:rgba(28,36,32,.4);--foot:#e9e5db;
+--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',Consolas,monospace;color-scheme:light}
+html[data-theme=dark]{--ink:#e8ede8;--mut:#9fada5;--line:rgba(232,237,232,.15);--glass:rgba(28,36,32,.55);--gb:rgba(255,255,255,.1);--cu:#e0a27a;--cu2:#f0c3a1;--rec:#e26a5e;--bg1:#141a18;--bg2:#1a2320;--bg3:#0e1412;--btn-ink:#141a18;--field:rgba(20,26,24,.7);--sh:rgba(0,0,0,.6);--foot:#0a0f0d;color-scheme:dark}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{
-  background:linear-gradient(160deg,var(--bg1),var(--bg2) 50%,var(--bg3)) fixed;
-  color:var(--ink);font:400 1rem/1.65 var(--sans);
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
-  transition:background .4s ease,color .4s ease;
-}
-#bg3d{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
-.grain{
-  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.05;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-html[data-theme="dark"] .grain{opacity:.03}
+body{background:linear-gradient(160deg,var(--bg1),var(--bg2) 50%,var(--bg3)) fixed;color:var(--ink);font:400 1rem/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .4s,color .4s}
+#bg3d{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block;pointer-events:none}
 header,main,footer{position:relative;z-index:1}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1120px;margin:0 auto;padding:0 26px}
 section{padding:110px 0 0}
-h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1}
-h1{font-size:clamp(3rem,7vw,6rem)}
-h2{font-size:clamp(2.4rem,4.8vw,3.9rem);max-width:17ch}
-em{font-style:italic;background:linear-gradient(100deg,var(--cu),var(--cu2) 60%,var(--cu));-webkit-background-clip:text;background-clip:text;color:transparent}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1.02}
+h1{font-size:clamp(3rem,7vw,5.8rem)}
+h2{font-size:clamp(2.3rem,4.8vw,3.8rem);max-width:18ch}
+em{font-style:italic;color:var(--cu)}
 .eyebrow{font:600 .74rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--cu);margin-bottom:16px;display:flex;align-items:center;gap:12px}
 .eyebrow:before{content:'';width:32px;height:1px;background:var(--cu)}
-.lede{color:var(--mut);margin-top:18px;max-width:56ch}
-header{position:sticky;top:14px;z-index:20;padding:0 16px}
-nav{
-  max-width:1040px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;
-  padding:9px 10px 9px 20px;background:var(--glass);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border:1px solid var(--gb);border-radius:999px;
-  box-shadow:0 12px 40px -18px var(--shadow-a);
-  transition:background .4s,border-color .4s;
-}
+.lede{color:var(--mut);margin-top:18px;max-width:58ch}
+header{position:sticky;top:calc(14px + env(safe-area-inset-top,0px));z-index:20;padding:0 16px}
+nav{max-width:1040px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:9px 10px 9px 20px;background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--gb);border-radius:999px;box-shadow:0 12px 40px -18px var(--sh)}
 .brand{display:flex;align-items:center;gap:10px;font:600 1.5rem var(--serif)}
-.brand svg{width:30px;height:30px}
+.brand svg{width:34px;height:34px}
 .links{display:flex;gap:26px;font-size:.86rem;color:var(--mut)}
 .links a:hover{color:var(--ink)}
 @media(max-width:800px){.links{display:none}}
 .nav-r{display:flex;align-items:center;gap:8px}
-.theme-btn{
-  width:40px;height:40px;border-radius:50%;border:1px solid var(--gb);
-  background:var(--glass);color:var(--ink);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:transform .25s,background .25s,border-color .25s;
-  font-size:1rem;
-}
+.theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--gb);background:var(--glass);color:var(--ink);cursor:pointer;font-size:1rem;transition:transform .25s}
 .theme-btn:hover{transform:translateY(-2px)}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:13px 26px;border-radius:999px;
-  font:600 .74rem var(--sans);letter-spacing:.09em;text-transform:uppercase;
-  border:1px solid transparent;cursor:pointer;transition:.25s;
-}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;border-radius:999px;font:600 .74rem var(--sans);letter-spacing:.09em;text-transform:uppercase;border:1px solid transparent;cursor:pointer;transition:.25s}
 .btn:hover{transform:translateY(-2px)}
-.btn.p{background:var(--ink);color:var(--btn-ink);box-shadow:0 16px 32px -14px var(--shadow-a)}
+.btn.p{background:var(--ink);color:var(--btn-ink);box-shadow:0 16px 32px -14px var(--sh)}
 .btn.p:hover{background:var(--cu);color:#fff}
-.btn.g{background:var(--glass);border-color:var(--gb);color:var(--ink);backdrop-filter:blur(12px)}
-.btn.rec{background:var(--rec);color:#fff}
-.btn:disabled{opacity:.4;cursor:not-allowed}
-.btn:disabled:hover{transform:none}
-.glass{
-  background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border:1px solid var(--gb);border-radius:26px;
-  box-shadow:0 34px 70px -40px var(--shadow-a),inset 0 1px 0 rgba(255,255,255,.15);
-  transition:background .4s,border-color .4s;
-}
-html[data-theme="dark"] .glass{box-shadow:0 34px 70px -40px var(--shadow-a),inset 0 1px 0 rgba(255,255,255,.05)}
-
+.btn.g{background:var(--glass);border-color:var(--gb);color:var(--ink)}
+.glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--gb);border-radius:26px;box-shadow:0 34px 70px -40px var(--sh)}
 .hero{min-height:calc(100vh - 80px);display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding-top:50px;padding-bottom:30px}
 @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:0}}
-.hero .lede{font-size:1.12rem;margin-top:26px}
+.hero .lede{font-size:1.1rem;margin-top:26px}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 .chips{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:40px;font-size:.84rem;color:var(--mut)}
 .chips i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--cu);margin-right:9px;vertical-align:middle}
-.stage{padding:24px}
+.stage{padding:24px;transition:transform .3s;will-change:transform}
 .sh{display:flex;align-items:center;gap:8px;font:.74rem var(--mono);color:var(--mut);padding-bottom:14px;border-bottom:1px solid var(--line)}
 .live{width:7px;height:7px;border-radius:50%;background:var(--rec);animation:pl 1.6s infinite}
 @keyframes pl{50%{opacity:.3}}
 .m{padding:15px 0;border-bottom:1px solid var(--line);font-size:.9rem}
-.m:last-child{border:0}
 .m small{font:.7rem var(--mono);color:var(--mut)}
 .m p{color:var(--mut)}
 .m b{display:block;margin-top:4px}
-.wave{display:flex;gap:3px;align-items:center;height:26px;margin-top:10px}
+.wave{display:flex;gap:3px;align-items:center;height:26px;margin-top:14px}
 .wave i{flex:1;background:linear-gradient(var(--cu2),var(--cu));border-radius:3px;animation:w 1.2s ease-in-out infinite}
 @keyframes w{0%,100%{height:5px}50%{height:22px}}
-
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 @media(max-width:800px){.stats{grid-template-columns:1fr 1fr}}
 .stats div{border-top:1px solid var(--line);padding-top:18px}
-.stats b{font:400 3.6rem/1 var(--serif);display:block}
+.stats b{font:400 3.4rem/1 var(--serif);display:block}
 .stats span{font-size:.86rem;color:var(--mut)}
-
 .app{margin-top:44px;padding:30px}
 .row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
 .f{display:flex;flex-direction:column;gap:6px;flex:1;min-width:190px}
 .f label{font:.68rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
-select,input[type=password],input[type=text]{
-  font:inherit;font-size:.9rem;padding:12px 14px;border-radius:14px;
-  border:1px solid var(--gb);background:var(--glass);color:var(--ink);
-  width:100%;outline:none;transition:.2s;
-}
-html[data-theme="light"] select,
-html[data-theme="light"] input[type=password],
-html[data-theme="light"] input[type=text]{background:rgba(255,255,255,.75)}
-select:focus,input:focus{border-color:var(--cu);box-shadow:0 0 0 4px rgba(184,113,74,.18)}
+select,input[type=password],input[type=text]{font:inherit;font-size:.9rem;padding:12px 14px;border-radius:14px;border:1px solid var(--gb);background:var(--field);color:var(--ink);width:100%;outline:none;transition:.2s}
+select option{background:var(--bg1);color:var(--ink)}
+select:focus,input:focus{border-color:var(--cu);box-shadow:0 0 0 4px rgba(184,113,74,.2)}
 .swap{width:46px;height:46px;border-radius:50%;padding:0;flex:none;font-size:1.1rem}
 .tog{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin:18px 0 6px}
 .sw{display:inline-flex;align-items:center;gap:9px;font-size:.84rem;color:var(--mut);cursor:pointer}
-.sw input{display:none}
-.sw s{width:36px;height:20px;border-radius:20px;background:rgba(128,128,128,.35);position:relative;transition:.2s}
+.sw input{position:absolute;opacity:0;width:0;height:0}
+.sw s{width:36px;height:20px;border-radius:20px;background:rgba(128,128,128,.4);position:relative;transition:.2s}
 .sw s:before{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:.2s}
-.sw input:checked+s{background:var(--ink)}
+.sw input:checked+s{background:var(--cu)}
 .sw input:checked+s:before{transform:translateX(16px)}
+.sw input:focus-visible+s{outline:2px solid var(--cu);outline-offset:2px}
 .hint{font-size:.78rem;color:var(--mut);margin-top:8px}
+.hint code{font-family:var(--mono)}
 .mic{display:flex;align-items:center;gap:18px;margin:22px 0}
-.orb{
-  width:84px;height:84px;border-radius:50%;border:0;cursor:pointer;color:#fff;font-size:1.6rem;
-  background:radial-gradient(circle at 30% 25%,var(--cu2),var(--cu) 55%,#8a4a2a);
-  box-shadow:0 20px 40px -14px rgba(184,113,74,.8);
-  transition:.3s;flex:none;
-}
+.orb{width:84px;height:84px;border-radius:50%;border:0;cursor:pointer;color:#fff;font-size:1.6rem;background:radial-gradient(circle at 30% 25%,var(--cu2),var(--cu) 55%,#8a4a2a);box-shadow:0 20px 40px -14px rgba(184,113,74,.8);transition:.3s;flex:none}
 .orb:hover{transform:scale(1.07)}
 .orb.on{background:radial-gradient(circle at 30% 25%,#f08a80,var(--rec) 60%,#9c2f27);animation:ring 1.3s infinite}
 @keyframes ring{0%{box-shadow:0 0 0 0 rgba(210,85,74,.5)}100%{box-shadow:0 0 0 24px rgba(210,85,74,0)}}
 .sig{flex:1;height:64px;display:flex;align-items:flex-end;gap:3px;padding:8px 12px;border-radius:16px;background:var(--glass);border:1px solid var(--gb)}
 .sig i{flex:1;min-width:2px;height:4px;border-radius:2px;background:linear-gradient(var(--cu2),var(--cu));transition:height .07s}
 .st{font:.74rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mut)}
-.interim{font:.86rem var(--mono);color:var(--mut);font-style:italic;min-height:22px;margin-bottom:12px}
+.interim{font:italic .86rem var(--mono);color:var(--mut);min-height:22px;margin:6px 0 10px}
+.err{color:var(--rec);font-size:.84rem;min-height:1.2em;margin-bottom:8px}
 .feed{display:flex;flex-direction:column;gap:12px;max-height:480px;overflow:auto;padding:4px}
 .empty{border:1px dashed var(--line);border-radius:18px;padding:34px;text-align:center;color:var(--mut);font-size:.9rem}
 .card{background:var(--glass);border:1px solid var(--gb);border-radius:18px;padding:16px 18px;animation:in .5s cubic-bezier(.2,.8,.2,1)}
 @keyframes in{from{opacity:0;transform:translateY(12px) scale(.98)}}
 .line{display:flex;gap:10px;align-items:flex-start}
-.tag{font:600 .62rem var(--mono);letter-spacing:.08em;padding:3px 8px;border-radius:6px;margin-top:4px;flex:none;text-transform:uppercase}
-.t1{background:rgba(127,157,139,.22);color:#3f6350}
-.t2{background:rgba(184,113,74,.16);color:#8a4a2a}
-.t3{background:rgba(120,90,180,.14);color:#5f47a0}
-html[data-theme="dark"] .t1{background:rgba(127,157,139,.22);color:#b3d0bf}
-html[data-theme="dark"] .t2{background:rgba(224,162,122,.2);color:#f0c3a1}
-html[data-theme="dark"] .t3{background:rgba(150,120,220,.22);color:#c0aaeb}
+.tag{font:600 .62rem var(--mono);letter-spacing:.08em;padding:3px 8px;border-radius:6px;margin-top:5px;flex:none;text-transform:uppercase}
+.t1{background:rgba(127,157,139,.25);color:#365846}
+.t2{background:rgba(184,113,74,.18);color:#8a4a2a}
+.t3{background:rgba(120,90,180,.16);color:#5f47a0}
+html[data-theme=dark] .t1{color:#b3d0bf}html[data-theme=dark] .t2{color:#f0c3a1}html[data-theme=dark] .t3{color:#c0aaeb}
 .card .s{color:var(--mut)}
-.card .d{font:500 1.28rem/1.35 var(--serif);font-size:1.4rem;color:var(--ink)}
+.card .d{font:500 1.4rem/1.35 var(--serif);color:var(--ink)}
 .card hr{border:0;border-top:1px solid var(--line);margin:11px 0}
 .card time{display:block;text-align:right;font:.66rem var(--mono);color:var(--mut);margin-top:6px}
 .pend{opacity:.55;font-style:italic}
 .typebox{display:flex;gap:10px;margin-top:16px}
-.err{color:var(--rec);font-size:.84rem;margin-top:8px;min-height:1em}
-
+.typebox input{flex:1}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:46px}
 @media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
 @media(max-width:540px){.grid{grid-template-columns:1fr}}
-.tile{padding:26px;transition:.35s}
+.tile{padding:26px;transition:transform .35s}
 .tile:hover{transform:translateY(-6px)}
 .tile .n{font:.75rem var(--mono);color:var(--cu)}
 .tile h3{font-size:1.7rem;margin:34px 0 10px;font-weight:500}
@@ -191,16 +121,17 @@ html[data-theme="dark"] .t3{background:rgba(150,120,220,.22);color:#c0aaeb}
 .price{grid-template-columns:repeat(3,1fr)}
 @media(max-width:820px){.price{grid-template-columns:1fr}}
 .plan{padding:34px;position:relative}
+.plan small{color:var(--mut);font-weight:600}
 .plan.pop{background:var(--ink);color:var(--btn-ink);border-color:var(--ink)}
-.plan.pop li,.plan.pop small{color:var(--mut)}
-html[data-theme="dark"] .plan.pop li,html[data-theme="dark"] .plan.pop small{color:#aab5ae}
-.plan.pop .pr{color:var(--btn-ink)}
+.plan.pop small,.plan.pop li{color:var(--bg3)}
+html[data-theme=dark] .plan.pop small,html[data-theme=dark] .plan.pop li{color:#4d5a53}
+.plan.pop .btn.g{background:var(--btn-ink);color:var(--ink)}
 .plan .pr{font:400 4rem/1 var(--serif);margin:14px 0 4px}
 .plan ul{list-style:none;margin:22px 0 28px;display:grid;gap:10px;font-size:.9rem;color:var(--mut)}
 .plan li:before{content:'+ ';color:var(--cu);font-weight:700}
 .plan .btn{width:100%}
 .bd{position:absolute;top:-12px;right:26px;background:var(--cu);color:#fff;font:700 .64rem var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:5px 13px;border-radius:20px}
-
+.faq{margin-top:40px}
 details{border-top:1px solid var(--line);padding:22px 0}
 details:last-child{border-bottom:1px solid var(--line)}
 summary{cursor:pointer;font:500 1.5rem var(--serif);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px}
@@ -208,45 +139,38 @@ summary::-webkit-details-marker{display:none}
 summary:after{content:'+';color:var(--cu);font-size:1.5rem}
 details[open] summary:after{content:'\2013'}
 details p{color:var(--mut);margin-top:12px;max-width:68ch;font-size:.95rem}
-.faq{margin-top:40px}
+details code{font-family:var(--mono);font-size:.85em}
 .close{text-align:center}
 .close h2{margin:0 auto}
 .close .cta{justify-content:center}
-
-footer{margin-top:120px;background:var(--panel-inner);color:var(--ink);padding:56px 0 34px;border-top:1px solid var(--line);transition:background .4s}
-html[data-theme="dark"] footer{background:#0a0f0d}
+footer{margin-top:120px;background:var(--foot);padding:56px 0 calc(34px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);transition:background .4s}
 footer p{color:var(--mut);font-size:.88rem;margin-top:8px}
-
-.rv{opacity:0;transform:translateY(30px);transition:1s cubic-bezier(.2,.8,.2,1)}
-.rv.v{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+.js .rv{opacity:0;transform:translateY(30px);transition:opacity 1s,transform 1s cubic-bezier(.2,.8,.2,1)}
+.js .rv.v{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <canvas id="bg3d" aria-hidden="true"></canvas>
-<div class="grain"></div>
 
 <header>
 <nav>
-<a class="brand" href="#">
-<svg viewBox="0 0 40 40" aria-hidden="true">
-<defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-<stop stop-color="#e0a27a"/><stop offset="1" stop-color="#8a4a2a"/>
-</linearGradient></defs>
-<circle cx="20" cy="20" r="18" fill="url(#lg)"/>
-<path d="M9 22q3-9 5 0t5 0 5 0 5 0" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-<path d="M11 15q2-5 4 0t4 0 4 0 4 0" stroke="#fff" stroke-opacity=".6" stroke-width="2" fill="none" stroke-linecap="round"/>
+<a class="brand" href="#" aria-label="VocaLink home">
+<svg viewBox="0 0 64 64" aria-hidden="true">
+<defs><linearGradient id="gb1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#3b3fd8"/></linearGradient>
+<linearGradient id="go1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fbbf24"/><stop offset=".55" stop-color="#fb7185"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
+<path d="M4 16q0-8 8-8h18q6 0 6 6v26q0 8-8 8H12q-8 0-8-8z" fill="url(#gb1)"/>
+<path d="M60 16q0-8-8-8H34q-6 0-6 6v26q0 8 8 8h16q8 0 8-8z" fill="url(#go1)"/>
+<circle cx="15" cy="24" r="5" fill="#0f1f5c"/><path d="M6 44q0-11 9-11t9 11z" fill="#0f1f5c"/>
+<circle cx="49" cy="24" r="5" fill="#2d1160"/><path d="M40 44q0-11 9-11t9 11z" fill="#2d1160"/>
+<circle cx="32" cy="32" r="10" fill="#fff" fill-opacity=".92"/>
+<text x="32" y="36" text-anchor="middle" font-size="11" font-weight="700" font-family="sans-serif" fill="#3b3fd8">文A</text>
 </svg>
 VocaLink
 </a>
-<div class="links">
-<a href="#try">Live translator</a>
-<a href="#features">How it works</a>
-<a href="#pricing">Pricing</a>
-<a href="#faq">FAQ</a>
-</div>
+<div class="links"><a href="#try">Live translator</a><a href="#features">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
 <div class="nav-r">
-<button class="theme-btn" id="themeBtn" aria-label="Toggle color scheme" title="Toggle color scheme">&#127769;</button>
+<button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle light and dark mode" title="Toggle light / dark">&#127769;</button>
 <a class="btn p" href="#try">Try it live</a>
 </div>
 </nav>
@@ -257,159 +181,606 @@ VocaLink
 <div class="rv">
 <p class="eyebrow">Real-time translation</p>
 <h1>Every voice, <em>understood</em> by everyone.</h1>
-<p class="lede">VocaLink listens to your mic or Discord audio, transcribes it live with Deepgram, and translates it into any of 130+ languages, as it is spoken. Nobody sets a language, nobody presses translate.</p>
-<div class="cta">
-<a class="btn p" href="#try">Start translating</a>
-<a class="btn g" href="#features">See how it works</a>
-</div>
-<div class="chips">
-<span><i></i>130+ target languages</span>
-<span><i></i>Captions in seconds</span>
-<span><i></i>Speaker labels</span>
-<span><i></i>Nothing stored</span>
-</div>
+<p class="lede">VocaLink listens to your microphone or your Discord audio, transcribes it live, and translates it into any of 130+ languages as it is spoken. Nobody sets a language, nobody presses translate.</p>
+<div class="cta"><a class="btn p" href="#try">Start translating</a><a class="btn g" href="#features">See how it works</a></div>
+<div class="chips"><span><i></i>130+ target languages</span><span><i></i>Captions in seconds</span><span><i></i>Speaker labels</span><span><i></i>Nothing stored</span></div>
 </div>
 <div class="glass stage rv" id="stage">
 <div class="sh"><span class="live"></span>#voice-channel &middot; live</div>
 <div class="m"><small>Marco &middot; Italian</small><p>Sono arrivato, aspetta un attimo.</p><b>I've arrived, wait a moment.</b></div>
-<div class="m"><small>Aiko &middot; Japanese</small><p>&#12418;&#12358;&#12377;&#12368;&#22987;&#12417;&#12414;&#12375;&#12423;&#12358;&#12290;</p><b>Let's begin very soon.</b></div>
+<div class="m"><small>Aiko &middot; Japanese</small><p>もうすぐ始めましょう。</p><b>Let's begin very soon.</b></div>
 <div class="m"><small>Amara &middot; Swahili</small><p>Karibu sana, wote!</p><b>Warm welcome, everyone!</b></div>
-<div class="wave" id="wave"></div>
+<div class="wave" id="wave" aria-hidden="true"></div>
 </div>
 </div>
 
-<div class="wrap rv">
-<div class="stats">
+<div class="wrap rv"><div class="stats">
 <div><b>130+</b><span>languages translated</span></div>
-<div><b>80+</b><span>languages recognized live</span></div>
+<div><b>10</b><span>languages auto-detected</span></div>
 <div><b>~1s</b><span>speech to caption</span></div>
 <div><b>0</b><span>audio stored</span></div>
-</div>
-</div>
+</div></div>
 
 <section class="wrap" id="try">
 <div class="rv">
 <p class="eyebrow">Live translator</p>
 <h2>Speak. Read it in <em>your</em> language.</h2>
-<p class="lede">Deepgram streams speech-to-text with speaker labels across 35+ languages. Other languages use your browser's speech engine. Google translates everything into your target. Keys stay in your browser.</p>
+<p class="lede">Deepgram streams speech-to-text with speaker labels for supported languages and auto-detects across 10 languages at once. Other languages use your browser's speech engine. Google translates everything into your target. Your key stays in your browser.</p>
 </div>
-
 <div class="glass app rv">
 <div class="row">
-<div class="f">
-<label for="dgKey">Deepgram API key</label>
-<input type="password" id="dgKey" placeholder="Paste key (needed for streaming and auto-detect)" autocomplete="off">
+<div class="f"><label for="dgKey">Deepgram API key</label><input type="password" id="dgKey" placeholder="Paste key (needed for streaming and auto-detect)" autocomplete="off"></div>
+<div class="f"><label for="dev">Microphone / input</label><select id="dev"><option value="">Default microphone</option></select></div>
 </div>
-<div class="f">
-<label for="dev">Microphone / input</label>
-<select id="dev"><option value="">Default microphone</option></select>
-</div>
-</div>
-
 <div class="row" style="margin-top:14px">
-<div class="f">
-<label for="src">Spoken language</label>
-<select id="src"></select>
+<div class="f"><label for="src">Spoken language</label><select id="src"></select></div>
+<button class="btn g swap" id="swap" type="button" title="Swap languages" aria-label="Swap languages">&#8644;</button>
+<div class="f"><label for="tgt">Translate into</label><select id="tgt"></select></div>
 </div>
-<button class="btn g swap" id="swap" type="button" title="Swap languages" aria-label="Swap languages">&#8646;</button>
-<div class="f">
-<label for="tgt">Translate into</label>
-<select id="tgt"></select>
-</div>
-</div>
-
 <div class="tog">
 <label class="sw"><input type="checkbox" id="dia" checked><s></s>Speaker labels</label>
 <label class="sw"><input type="checkbox" id="say"><s></s>Read aloud</label>
-<button class="btn g" id="exp" type="button" style="padding:8px 16px">&#11015; Export</button>
+<button class="btn g" id="exp" type="button" style="padding:9px 16px">&#11015; Export</button>
 </div>
-
-<p class="hint">Tip: choose "BlackHole 2ch" as input to translate Discord audio. Serve over <b>http://localhost</b> or https for mic access. Chrome or Edge recommended.</p>
-
+<p class="hint">Tip: pick "BlackHole 2ch" as input to translate Discord audio (browser-engine languages always use the default mic). Open this page over <code>http://localhost</code> or https for mic access. Chrome or Edge recommended.</p>
 <div class="mic">
-<button class="orb" id="go" type="button" aria-label="Start listening">&#127897;</button>
+<button class="orb" id="go" type="button" aria-label="Start listening">&#127908;</button>
 <div class="sig" id="sig" aria-hidden="true"></div>
 </div>
-
 <div class="st" id="status">idle</div>
 <div class="interim" id="interim" aria-live="polite"></div>
 <div class="err" id="err" role="alert"></div>
 <div class="feed" id="feed"><div class="empty">Nothing yet. Press the microphone, or type text below.</div></div>
-<div class="typebox">
-<input type="text" id="txt" placeholder="Or type or paste text in any language (auto-detected)">
-<button class="btn p" id="tbtn" type="button">Translate</button>
-</div>
+<div class="typebox"><input type="text" id="txt" placeholder="Or type or paste text in any language (auto-detected)" aria-label="Text to translate"><button class="btn p" id="tbtn" type="button">Translate</button></div>
 </div>
 </section>
 
 <section class="wrap" id="features">
-<div class="rv">
-<p class="eyebrow">How it works</p>
-<h2>Four steps, <em>zero</em> setup for listeners.</h2>
-</div>
+<div class="rv"><p class="eyebrow">How it works</p><h2>Four steps, <em>zero</em> setup for listeners.</h2></div>
 <div class="grid">
 <div class="glass tile rv"><div class="n">01</div><h3>Someone speaks</h3><p>Mic or Discord audio, in any supported language. No picker, no setting to configure first.</p></div>
-<div class="glass tile rv"><div class="n">02</div><h3>Deepgram listens</h3><p>Streaming transcription with speaker diarization, or auto-detect across 10 languages at once.</p></div>
+<div class="glass tile rv"><div class="n">02</div><h3>Deepgram listens</h3><p>Streaming transcription with speaker labels, or auto-detect across 10 languages at once.</p></div>
 <div class="glass tile rv"><div class="n">03</div><h3>Google translates</h3><p>Into any of 130+ languages, sentence by sentence, as the conversation moves.</p></div>
-<div class="glass tile rv"><div class="n">04</div><h3>You read or hear it</h3><p>Live captions post in seconds. Optional read-aloud, one-click transcript export.</p></div>
+<div class="glass tile rv"><div class="n">04</div><h3>You read or hear it</h3><p>Live captions in seconds. Optional read-aloud and one-click transcript export.</p></div>
 </div>
 </section>
 
 <section class="wrap" id="pricing">
-<div class="rv">
-<p class="eyebrow">Pricing</p>
-<h2>Start free. Upgrade when it is <em>worth</em> it.</h2>
-</div>
+<div class="rv"><p class="eyebrow">Pricing</p><h2>Start free. Upgrade when it is <em>worth</em> it.</h2></div>
 <div class="grid price">
-<div class="glass plan rv">
-<small>Free</small>
-<div class="pr">$0</div>
-<ul><li>60 minutes a month</li><li>130+ languages</li><li>One server</li></ul>
-<a class="btn g" href="#try">Try now</a>
-</div>
-<div class="glass plan rv">
-<small>Starter</small>
-<div class="pr">$5</div>
-<ul><li>5 hours a month</li><li>130+ languages</li><li>One server</li></ul>
-<a class="btn g" href="#try">Get Starter</a>
-</div>
-<div class="glass plan pop rv">
-<span class="bd">Popular</span>
-<small>Pro</small>
-<div class="pr">$12</div>
-<ul><li>Unlimited minutes</li><li>Cloned-voice dubbing (consent-gated)</li><li>Priority support</li></ul>
-<a class="btn g" href="#try">Get Pro</a>
-</div>
+<div class="glass plan rv"><small>Free</small><div class="pr">$0</div><ul><li>60 minutes a month</li><li>130+ languages</li><li>One server</li></ul><a class="btn g" href="#try">Try now</a></div>
+<div class="glass plan rv"><small>Starter</small><div class="pr">$5</div><ul><li>5 hours a month</li><li>130+ languages</li><li>One server</li></ul><a class="btn g" href="#try">Get Starter</a></div>
+<div class="glass plan pop rv"><span class="bd">Popular</span><small>Pro</small><div class="pr">$12</div><ul><li>Unlimited minutes</li><li>Cloned-voice dubbing (consent-gated)</li><li>Priority support</li></ul><a class="btn g" href="#try">Get Pro</a></div>
 </div>
 </section>
 
 <section class="wrap" id="faq">
-<div class="rv">
-<p class="eyebrow">FAQ</p>
-<h2>Honest answers.</h2>
-</div>
+<div class="rv"><p class="eyebrow">FAQ</p><h2>Honest answers.</h2></div>
 <div class="faq rv">
-<details><summary>How many languages are really supported?</summary><p>Translation covers 130+ languages via Google. Live speech recognition covers 80+. About 35 stream through Deepgram for best quality and speaker labels, and the rest use your browser's built-in recognizer. Any language can also be typed or pasted.</p></details>
-<details><summary>Is my audio stored?</summary><p>No. Audio goes straight from your browser to Deepgram for transcription. VocaLink stores nothing. Your API key is kept only in your browser's local storage.</p></details>
-<details><summary>Why do I need a Deepgram key?</summary><p>It authenticates the streaming connection. There is free credit on signup at console.deepgram.com. Without one, the browser engine still works for supported languages.</p></details>
-<details><summary>Why does it not work when I open the file directly?</summary><p>Browsers restrict the microphone on <code>file://</code> pages. Run <code>python3 -m http.server 8000</code> in the folder and open localhost:8000.</p></details>
+<details><summary>How many languages are supported?</summary><p>Translation covers 130+ languages via Google. Auto-detect works across 10 languages through Deepgram. Many other languages stream through Deepgram with a chosen source, and the rest use your browser's built-in recognizer where available. Any language can also be typed or pasted.</p></details>
+<details><summary>Is my audio stored?</summary><p>VocaLink stores nothing. Audio goes from your browser to Deepgram for transcription, and text goes to Google for translation. Your API key is kept only in your browser's local storage.</p></details>
+<details><summary>Why do I need a Deepgram key?</summary><p>It authenticates the streaming connection, and there is free credit on signup at console.deepgram.com. Without a key, the browser engine still works for languages your browser supports.</p></details>
+<details><summary>Why does the mic not work when I open the file directly?</summary><p>Browsers restrict the microphone on <code>file://</code> pages. Run <code>python3 -m http.server 8000</code> in the folder and open <code>http://localhost:8000</code>.</p></details>
 </div>
 </section>
 
-<section class="wrap close rv">
-<h2>Put VocaLink in the room and just <em>talk</em>.</h2>
-<div class="cta"><a class="btn p" href="#try">Start translating</a></div>
-</section>
+<section class="wrap close rv"><h2>Put VocaLink in the room and just <em>talk</em>.</h2><div class="cta"><a class="btn p" href="#try">Start translating</a></div></section>
 </main>
 
-<footer>
-<div class="wrap">
-<div class="brand" style="color:inherit">VocaLink</div>
-<p>Real-time voice translation &middot; Deepgram &amp; Google Translate &middot; &copy; 2026 VocaLink</p>
-</div>
-</footer>
+<footer><div class="wrap"><div class="brand">VocaLink</div><p>Real-time voice translation &middot; Deepgram &amp; Google Translate &middot; &copy; 2026 VocaLink</p></div></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="app.js"></script>
+<script>
+document.documentElement.classList.add('js');
+
+/* ========== 1. THEME ========== */
+(function () {
+  var root = document.documentElement, btn = document.getElementById('themeBtn');
+  var stored = null;
+  try { stored = localStorage.getItem('vl_theme'); } catch (e) {}
+  var prefers = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+  function apply(mode) {
+    root.setAttribute('data-theme', mode);
+    btn.innerHTML = mode === 'dark' ? '&#9728;' : '&#127769;';
+    if (window.__vlTheme) window.__vlTheme(mode);
+  }
+  apply(stored || (prefers && prefers.matches ? 'dark' : 'light'));
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('vl_theme', next); } catch (e) {}
+    apply(next);
+  });
+  if (prefers && prefers.addEventListener) prefers.addEventListener('change', function (e) {
+    var s = null; try { s = localStorage.getItem('vl_theme'); } catch (err) {}
+    if (!s) apply(e.matches ? 'dark' : 'light');
+  });
+})();
+
+/* ========== 2. THREE.JS BACKGROUND ========== */
+(function () {
+  var canvas = document.getElementById('bg3d');
+  if (!window.THREE || !canvas) return;
+  var renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); } catch (e) { return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(42, 1, 0.1, 200);
+  camera.position.z = 22;
+
+  /* Environment maps, one per theme, built once */
+  var pmrem = new THREE.PMREMGenerator(renderer);
+  function buildEnv(dark) {
+    var s = new THREE.Scene();
+    s.add(new THREE.Mesh(new THREE.SphereGeometry(60, 32, 16),
+      new THREE.MeshBasicMaterial({ color: dark ? 0x2a3330 : 0xcfc8bb, side: THREE.BackSide })));
+    var k = dark ? 1 : 2.6;
+    [[0, 30, 10, 50, 18, 1.5], [-32, 8, 2, 16, 34, 1.2], [32, -2, -8, 14, 34, 1], [0, -30, 4, 44, 12, .5]]
+      .forEach(function (b) {
+        var m = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
+        m.color.setRGB(b[5] * k, b[5] * k * .95, b[5] * k * .9);
+        var p = new THREE.Mesh(new THREE.PlaneGeometry(b[3], b[4]), m);
+        p.position.set(b[0], b[1], b[2]); p.lookAt(0, 0, 0); s.add(p);
+      });
+    return pmrem.fromScene(s, 0.04).texture;
+  }
+  var envs = { light: buildEnv(false), dark: buildEnv(true) };
+
+  var hemi = new THREE.HemisphereLight(0xfff4e6, 0xb8c6bb, 0.7); scene.add(hemi);
+  var dir = new THREE.DirectionalLight(0xfff0dc, 1.1); dir.position.set(-6, 10, 8); scene.add(dir);
+
+  function glass() { return new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: .12, transparent: true, opacity: .42, clearcoat: 1, clearcoatRoughness: .08, envMapIntensity: 1.5 }); }
+  function metal(c, r) { return new THREE.MeshStandardMaterial({ color: c, metalness: 1, roughness: r, envMapIntensity: 1.3 }); }
+  function matte(c, r) { return new THREE.MeshStandardMaterial({ color: c, metalness: 0, roughness: r }); }
+
+  function slab(w, h, r, d) {
+    var s = new THREE.Shape(), x = -w / 2, y = -h / 2;
+    s.moveTo(x + r, y); s.lineTo(x + w - r, y); s.quadraticCurveTo(x + w, y, x + w, y + r);
+    s.lineTo(x + w, y + h - r); s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    s.lineTo(x + r, y + h); s.quadraticCurveTo(x, y + h, x, y + h - r);
+    s.lineTo(x, y + r); s.quadraticCurveTo(x, y, x + r, y);
+    var g = new THREE.ExtrudeGeometry(s, { depth: d, bevelEnabled: true, bevelThickness: .03, bevelSize: .03, bevelSegments: 3 });
+    g.center(); return g;
+  }
+
+  var items = [];
+  function add(geo, mat, x, y, z, sc, spin, rot) {
+    var m = new THREE.Mesh(geo, mat);
+    m.position.set(x, y, z); m.scale.setScalar(sc);
+    if (rot) m.rotation.set(rot[0], rot[1], rot[2]);
+    mat.userData.base = mat.color.getHex();
+    m.userData = { hx: x, hy: y, ox: 0, oy: 0, vx: 0, vy: 0, spin: spin, ph: Math.random() * 6.28, glass: !!mat.transparent };
+    scene.add(m); items.push(m);
+  }
+  add(new THREE.TorusKnotGeometry(.8, .3, 220, 24), metal(0xd9a17e, .2), 6.6, .3, -2.5, 2.1, [.0025, .004]);
+  add(slab(2.6, 1.7, .25, .08), glass(), -8, 3.3, -3, 1.6, [.002, .003], [.3, .5, .2]);
+  add(slab(2.2, 1.5, .22, .08), glass(), 9.6, -4, -1.5, 1.3, [.003, .002], [-.4, -.5, .3]);
+  add(slab(2, 1.3, .2, .07), glass(), 3, 5.2, -4, 1.1, [.002, .004], [.5, -.3, .1]);
+  add(new THREE.SphereGeometry(1, 48, 48), matte(0xd8a58c, .6), -9.6, -3, -2, 1.15, [.001, .002]);
+  add(new THREE.SphereGeometry(1, 48, 48), matte(0xe8bda6, .55), 1.6, -5.8, -1, .7, [.001, .002]);
+  add(new THREE.SphereGeometry(1, 48, 48), matte(0x9db3a3, .5), -3.6, -6.2, -3, 1, [.001, .002]);
+  add(new THREE.DodecahedronGeometry(1, 0), matte(0xcdbfae, .95), -1.6, 5.8, -5, 1, [.004, .003]);
+  add(new THREE.TorusGeometry(1, .1, 20, 90), metal(0xd7a07f, .22), 10.4, 4.6, -4, 1.5, [.004, .002], [.6, .3, 0]);
+  add(new THREE.TorusGeometry(1, .08, 20, 90), metal(0xbfcfc4, .25), -10.6, .6, -5, 1.2, [.003, .004], [.4, .7, 0]);
+
+  var N = 150, sp = new Float32Array(N * 3);
+  for (var i = 0; i < N; i++) {
+    sp[i * 3] = (Math.random() - .5) * 34; sp[i * 3 + 1] = (Math.random() - .5) * 20; sp[i * 3 + 2] = (Math.random() - .5) * 14 - 4;
+  }
+  var sg = new THREE.BufferGeometry(); sg.setAttribute('position', new THREE.BufferAttribute(sp, 3));
+  var starMat = new THREE.PointsMaterial({ color: 0xffffff, size: .06, transparent: true, opacity: .6 });
+  var stars = new THREE.Points(sg, starMat); scene.add(stars);
+
+  function retint(mode) {
+    var d = mode === 'dark';
+    scene.environment = envs[mode];
+    hemi.color.setHex(d ? 0xc8d8d0 : 0xfff4e6); hemi.groundColor.setHex(d ? 0x1a2320 : 0xb8c6bb); hemi.intensity = d ? .55 : .7;
+    dir.color.setHex(d ? 0xd8e8dc : 0xfff0dc); dir.intensity = d ? .9 : 1.1;
+    starMat.opacity = d ? .9 : .5;
+    items.forEach(function (m) {
+      var mat = m.material;
+      if (m.userData.glass) { mat.color.setHex(d ? 0xb8c8c0 : 0xffffff); mat.opacity = d ? .32 : .42; }
+      else { mat.color.setHex(mat.userData.base); if (d) mat.color.multiplyScalar(.75); }
+    });
+    if (reduce) renderer.render(scene, camera);
+  }
+  var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  window.__vlTheme = retint;
+
+  function resize() {
+    renderer.setSize(window.innerWidth, window.innerHeight, false);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    if (reduce) renderer.render(scene, camera);
+  }
+  resize(); window.addEventListener('resize', resize);
+
+  var mx = 0, my = 0, tx = 0, ty = 0, px = 0, py = 0, hasPtr = false;
+  var panel = document.getElementById('stage');
+  window.addEventListener('pointermove', function (e) {
+    tx = (e.clientX / window.innerWidth) * 2 - 1;
+    ty = -((e.clientY / window.innerHeight) * 2 - 1);
+    /* world-space pointer on z = 0 plane for repel */
+    var h = Math.tan(21 * Math.PI / 180) * camera.position.z;
+    px = tx * h * camera.aspect; py = ty * h; hasPtr = true;
+    if (panel && !reduce && window.innerWidth > 900) {
+      var r = panel.getBoundingClientRect();
+      var dx = (e.clientX - (r.left + r.width / 2)) / window.innerWidth;
+      var dy = (e.clientY - (r.top + r.height / 2)) / window.innerHeight;
+      panel.style.transform = 'perspective(900px) rotateY(' + (dx * 10) + 'deg) rotateX(' + (-dy * 8) + 'deg)';
+    }
+  }, { passive: true });
+
+  var t = 0;
+  function frame() {
+    t += .01;
+    mx += (tx - mx) * .06; my += (ty - my) * .06;
+    camera.position.x = mx * 1.4; camera.position.y = my * 1;
+    camera.lookAt(0, 0, 0);
+    items.forEach(function (m) {
+      var d = m.userData;
+      m.rotation.x += d.spin[0]; m.rotation.y += d.spin[1];
+      if (hasPtr) {
+        var dx = d.hx + d.ox - px, dy = d.hy + d.oy - py, dist = Math.sqrt(dx * dx + dy * dy) || .01;
+        if (dist < 3.5) { var f = (3.5 - dist) * .012; d.vx += dx / dist * f; d.vy += dy / dist * f; }
+      }
+      d.vx += -d.ox * .02; d.vy += -d.oy * .02; d.vx *= .9; d.vy *= .9;
+      d.ox += d.vx; d.oy += d.vy;
+      m.position.x = d.hx + d.ox;
+      m.position.y = d.hy + d.oy + Math.sin(t + d.ph) * .25;
+    });
+    stars.rotation.y = t * .02 + mx * .15; stars.rotation.x = my * .08;
+    renderer.render(scene, camera);
+    requestAnimationFrame(frame);
+  }
+  retint(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+  if (reduce) renderer.render(scene, camera); else frame();
+})();
+
+/* ========== 3. REVEAL ON SCROLL + DECOR ========== */
+(function () {
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('v'); }); }
+  else {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('v'); io.unobserve(x.target); } });
+    }, { threshold: .12 });
+    els.forEach(function (e) { io.observe(e); });
+  }
+  var wv = document.getElementById('wave');
+  for (var i = 0; i < 40; i++) { var b = document.createElement('i'); b.style.animationDelay = (i * .06) + 's'; wv.appendChild(b); }
+})();
+
+/* ========== 4. LIVE TRANSLATOR ========== */
+/* Format: google~Name~deepgramCode~browserSpeechLocale */
+var RAW =
+"af~Afrikaans~~af-ZA;sq~Albanian~~sq-AL;am~Amharic~~am-ET;ar~Arabic~~ar-SA;hy~Armenian~~hy-AM;as~Assamese;ay~Aymara;az~Azerbaijani~~az-AZ;bm~Bambara;eu~Basque~~eu-ES;be~Belarusian;bn~Bengali~~bn-BD;bho~Bhojpuri;bs~Bosnian~~bs-BA;bg~Bulgarian~bg~bg-BG;ca~Catalan~ca~ca-ES;ceb~Cebuano;" +
+"zh-CN~Chinese (Simplified)~zh~zh-CN;zh-TW~Chinese (Traditional)~zh-TW~zh-TW;co~Corsican;hr~Croatian~~hr-HR;cs~Czech~cs~cs-CZ;da~Danish~da~da-DK;dv~Dhivehi;doi~Dogri;nl~Dutch~nl~nl-NL;en~English~en~en-US;eo~Esperanto;et~Estonian~et~et-EE;ee~Ewe;tl~Filipino~~fil-PH;fi~Finnish~fi~fi-FI;fr~French~fr~fr-FR;fy~Frisian;gl~Galician~~gl-ES;ka~Georgian~~ka-GE;" +
+"de~German~de~de-DE;el~Greek~el~el-GR;gn~Guarani;gu~Gujarati~~gu-IN;ht~Haitian Creole;ha~Hausa;haw~Hawaiian;iw~Hebrew~~he-IL;hi~Hindi~hi~hi-IN;hmn~Hmong;hu~Hungarian~hu~hu-HU;is~Icelandic~~is-IS;ig~Igbo;ilo~Ilocano;id~Indonesian~id~id-ID;ga~Irish;it~Italian~it~it-IT;ja~Japanese~ja~ja-JP;jw~Javanese~~jv-ID;kn~Kannada~~kn-IN;kk~Kazakh~~kk-KZ;km~Khmer~~km-KH;" +
+"rw~Kinyarwanda;gom~Konkani;ko~Korean~ko~ko-KR;kri~Krio;ku~Kurdish (Kurmanji);ckb~Kurdish (Sorani);ky~Kyrgyz;lo~Lao~~lo-LA;la~Latin;lv~Latvian~lv~lv-LV;ln~Lingala;lt~Lithuanian~lt~lt-LT;lg~Luganda;lb~Luxembourgish;mk~Macedonian~~mk-MK;mai~Maithili;mg~Malagasy;ms~Malay~ms~ms-MY;ml~Malayalam~~ml-IN;mt~Maltese;mi~Maori;mr~Marathi~~mr-IN;mni-Mtei~Meiteilon (Manipuri);lus~Mizo;mn~Mongolian~~mn-MN;" +
+"my~Myanmar (Burmese)~~my-MM;ne~Nepali~~ne-NP;no~Norwegian~no~nb-NO;ny~Nyanja (Chichewa);or~Odia (Oriya);om~Oromo;ps~Pashto;fa~Persian~~fa-IR;pl~Polish~pl~pl-PL;pt~Portuguese~pt~pt-BR;pa~Punjabi;qu~Quechua;ro~Romanian~ro~ro-RO;ru~Russian~ru~ru-RU;sm~Samoan;sa~Sanskrit;gd~Scots Gaelic;nso~Sepedi;sr~Serbian~~sr-RS;st~Sesotho;sn~Shona;sd~Sindhi;si~Sinhala~~si-LK;sk~Slovak~sk~sk-SK;sl~Slovenian~~sl-SI;so~Somali;" +
+"es~Spanish~es~es-ES;su~Sundanese~~su-ID;sw~Swahili~~sw-TZ;sv~Swedish~sv~sv-SE;tg~Tajik;ta~Tamil~~ta-IN;tt~Tatar;te~Telugu~~te-IN;th~Thai~th~th-TH;ti~Tigrinya;ts~Tsonga;tr~Turkish~tr~tr-TR;tk~Turkmen;ak~Twi (Akan);uk~Ukrainian~uk~uk-UA;ur~Urdu~~ur-PK;ug~Uyghur;uz~Uzbek~~uz-UZ;vi~Vietnamese~vi~vi-VN;cy~Welsh;xh~Xhosa~~xh-ZA;yi~Yiddish;yo~Yoruba;zu~Zulu~~zu-ZA";
+
+var LANGS = RAW.split(';').map(function (s) {
+  var p = s.split('~');
+  return { g: p[0], n: p[1], dg: p[2] || '', sr: p[3] || '' };
+});
+var AUTO = { g: 'auto', n: 'Auto-detect (10 languages via Deepgram)', dg: 'multi', sr: '' };
+
+var $ = function (id) { return document.getElementById(id); };
+var src = $('src'), tgt = $('tgt'), dev = $('dev'), go = $('go'), feed = $('feed'),
+    interim = $('interim'), statusEl = $('status'), errEl = $('err'), dgKey = $('dgKey'),
+    swapBtn = $('swap'), expBtn = $('exp'), txtInput = $('txt'), tbtn = $('tbtn'),
+    diaToggle = $('dia'), sayToggle = $('say');
+
+var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+var canBrowser = !!SR;
+
+function findLang(code) {
+  if (code === 'auto') return AUTO;
+  for (var i = 0; i < LANGS.length; i++) if (LANGS[i].g === code) return LANGS[i];
+  return null;
+}
+
+/* Source list: auto-detect first, then anything streamable or browser-recognizable */
+src.appendChild(new Option(AUTO.n, AUTO.g));
+LANGS.forEach(function (l) {
+  if (l.dg || (l.sr && canBrowser)) src.appendChild(new Option(l.n + (l.dg ? '  \u26A1' : ''), l.g));
+});
+LANGS.forEach(function (l) { tgt.appendChild(new Option(l.n, l.g)); });
+src.value = 'fr'; tgt.value = 'en';
+
+try { dgKey.value = localStorage.getItem('vl_dg') || ''; } catch (e) {}
+dgKey.addEventListener('input', function () { try { localStorage.setItem('vl_dg', dgKey.value.trim()); } catch (e) {} });
+
+swapBtn.addEventListener('click', function () {
+  var a = src.value, b = tgt.value;
+  if (a === 'auto') return;
+  var ok = false;
+  for (var i = 0; i < src.options.length; i++) if (src.options[i].value === b) { ok = true; break; }
+  if (ok) { src.value = b; tgt.value = a; }
+});
+
+/* Level meter */
+var sig = $('sig');
+for (var si = 0; si < 56; si++) sig.appendChild(document.createElement('i'));
+var bars = sig.children;
+function clearMeter() { for (var i = 0; i < bars.length; i++) bars[i].style.height = '4px'; }
+
+function setStatus(text, live) { statusEl.textContent = text; go.classList.toggle('on', !!live); }
+function setErr(m) { errEl.textContent = m || ''; }
+
+/* Devices */
+function loadDevices() {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) return;
+  var keep = dev.value;
+  navigator.mediaDevices.enumerateDevices().then(function (list) {
+    var ins = list.filter(function (x) { return x.kind === 'audioinput' && x.label; });
+    if (!ins.length) return;
+    dev.innerHTML = '';
+    dev.appendChild(new Option('Default microphone', ''));
+    ins.forEach(function (x) {
+      dev.appendChild(new Option(x.label + (/blackhole/i.test(x.label) ? '  (Discord)' : ''), x.deviceId));
+    });
+    dev.value = keep;
+  }).catch(function () {});
+}
+loadDevices();
+
+/* Google Translate (unofficial endpoint) */
+function translate(text, sl, tl) {
+  var q = encodeURIComponent(text), clients = ['gtx', 'dict-chrome-ex'], lastErr = null;
+  function attempt(i) {
+    if (i >= clients.length) return Promise.reject(lastErr);
+    var url = 'https://translate.googleapis.com/translate_a/single?client=' + clients[i] +
+      '&sl=' + encodeURIComponent(sl) + '&tl=' + encodeURIComponent(tl) + '&dt=t&q=' + q;
+    return fetch(url).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function (d) {
+      return { text: d[0].map(function (s) { return s[0]; }).join(''), detected: d[2] };
+    }).catch(function (e) { lastErr = e; return attempt(i + 1); });
+  }
+  return attempt(0);
+}
+
+function escHtml(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+var log = [], firstCard = true;
+
+function speak(text, tl) {
+  if (!sayToggle.checked || !('speechSynthesis' in window)) return;
+  var meta = findLang(tl), u = new SpeechSynthesisUtterance(text);
+  u.lang = (meta && meta.sr) ? meta.sr : tl;
+  speechSynthesis.speak(u);
+}
+
+function addCard(text, speaker, srcGuess) {
+  if (!text || !text.trim()) return;
+  if (firstCard) { feed.innerHTML = ''; firstCard = false; }
+  var sl = srcGuess || src.value, tl = tgt.value;
+  var time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  var card = document.createElement('div');
+  card.className = 'card';
+  var spk = (speaker !== null && speaker !== undefined) ? '<span class="tag t3">Spk ' + (speaker + 1) + '</span>' : '';
+  card.innerHTML =
+    '<div class="line">' + spk + '<span class="tag t1 sl">' + escHtml(sl) + '</span><span class="s">' + escHtml(text) + '</span></div><hr>' +
+    '<div class="line"><span class="tag t2">' + escHtml(tl) + '</span><span class="d pend">translating\u2026</span></div>' +
+    '<time>' + escHtml(time) + '</time>';
+  feed.prepend(card);
+  var out = card.querySelector('.d');
+  var entry = { time: time, src: text, tr: null, from: sl, to: tl };
+  log.push(entry);
+  translate(text, sl, tl).then(function (r) {
+    out.textContent = r.text; out.classList.remove('pend'); entry.tr = r.text;
+    if (sl === 'auto' && r.detected) { card.querySelector('.sl').textContent = r.detected; entry.from = r.detected; }
+    speak(r.text, tl);
+  }).catch(function (e) {
+    out.textContent = 'Translation failed (' + e.message + '). Check your connection.';
+    out.classList.remove('pend'); out.style.color = 'var(--rec)';
+  });
+}
+
+/* Typed input */
+tbtn.addEventListener('click', function () {
+  var v = txtInput.value;
+  if (v && v.trim()) { addCard(v.trim(), null, 'auto'); txtInput.value = ''; }
+});
+txtInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') tbtn.click(); });
+
+/* Export */
+expBtn.addEventListener('click', function () {
+  if (!log.length) { setErr('Nothing to export yet.'); return; }
+  var lines = log.map(function (e) {
+    return '[' + e.time + '] (' + e.from + ' > ' + e.to + ')\n' + e.src + '\n' + (e.tr || '(no translation)') + '\n';
+  });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([lines.join('\n')], { type: 'text/plain' }));
+  a.download = 'vocalink-transcript.txt';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+});
+
+/* ---------- Audio capture state ---------- */
+var listening = false, ws = null, recorder = null, audioCtx = null, analyser = null,
+    stream = null, rafId = null, sr = null, keepAlive = null, buf = '', bufSpk = null, bufLang = null;
+
+function drawMeter() {
+  if (!analyser) return;
+  var data = new Uint8Array(analyser.frequencyBinCount);
+  analyser.getByteFrequencyData(data);
+  var stride = Math.max(1, Math.floor(data.length / bars.length));
+  for (var i = 0; i < bars.length; i++) bars[i].style.height = Math.max(4, ((data[i * stride] || 0) / 255) * 48) + 'px';
+  rafId = requestAnimationFrame(drawMeter);
+}
+
+function startMeter() {
+  try {
+    var AC = window.AudioContext || window.webkitAudioContext;
+    audioCtx = new AC();
+    analyser = audioCtx.createAnalyser(); analyser.fftSize = 256;
+    audioCtx.createMediaStreamSource(stream).connect(analyser);
+    drawMeter();
+  } catch (e) {}
+}
+
+function flushBuf() {
+  if (buf.trim()) addCard(buf.trim(), bufSpk, bufLang && src.value === 'auto' ? bufLang : null);
+  buf = ''; bufSpk = null; bufLang = null; interim.textContent = '';
+}
+
+/* ---------- Deepgram ---------- */
+function dgUrl(lang) {
+  var p = new URLSearchParams(), multi = lang.dg === 'multi';
+  p.set('model', multi ? 'nova-3' : 'nova-2');
+  p.set('language', lang.dg);          /* 'multi' = nova-3 multilingual auto-detect */
+  p.set('smart_format', 'true');
+  p.set('interim_results', 'true');
+  p.set('endpointing', multi ? '100' : '300');
+  if (diaToggle.checked) p.set('diarize', 'true');
+  return 'wss://api.deepgram.com/v1/listen?' + p.toString();
+}
+
+function dominantSpeaker(alt) {
+  if (!alt.words || !alt.words.length) return null;
+  var c = {}, best = null;
+  alt.words.forEach(function (w) { if (typeof w.speaker === 'number') c[w.speaker] = (c[w.speaker] || 0) + 1; });
+  Object.keys(c).forEach(function (k) { if (best === null || c[k] > c[best]) best = k; });
+  return best === null ? null : +best;
+}
+
+function dominantLang(alt) {
+  var l = alt.languages && alt.languages[0];
+  if (!l && alt.words && alt.words.length) l = alt.words[0].language;
+  return l || null;
+}
+
+function onDgMessage(ev) {
+  var msg; try { msg = JSON.parse(ev.data); } catch (e) { return; }
+  var alt = msg && msg.channel && msg.channel.alternatives && msg.channel.alternatives[0];
+  if (!alt || !alt.transcript) return;
+  var spk = dominantSpeaker(alt);
+
+  if (msg.is_final) {
+    if (bufSpk !== null && spk !== null && spk !== bufSpk) flushBuf();
+    if (bufSpk === null && spk !== null) bufSpk = spk;
+    var l = dominantLang(alt); if (l) bufLang = l;
+    buf = buf ? buf + ' ' + alt.transcript : alt.transcript;
+    interim.textContent = buf;
+  } else {
+    interim.textContent = (buf ? buf + ' ' : '') + alt.transcript;
+  }
+  if (msg.speech_final) flushBuf();
+}
+
+function openDeepgram(lang, key, onFail) {
+  var opened = false;
+  ws = new WebSocket(dgUrl(lang), ['token', key]);
+  var mine = ws;
+  ws.onopen = function () {
+    opened = true;
+    setStatus('listening \u00B7 Deepgram', true);
+    var mime = window.MediaRecorder && MediaRecorder.isTypeSupported('audio/webm;codecs=opus') ? 'audio/webm;codecs=opus' : '';
+    try { recorder = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream); }
+    catch (e) { setErr('This browser cannot record audio for streaming.'); stopAll(); return; }
+    recorder.ondataavailable = function (e) { if (e.data.size && mine.readyState === 1) mine.send(e.data); };
+    recorder.start(250);
+    keepAlive = setInterval(function () { if (mine.readyState === 1) mine.send(JSON.stringify({ type: 'KeepAlive' })); }, 8000);
+  };
+  ws.onmessage = onDgMessage;
+  ws.onerror = function () {};
+  ws.onclose = function (ev) {
+    if (mine !== ws || !listening) return;
+    if (!opened) { onFail('Deepgram connection failed (code ' + ev.code + '). Check your API key and that it allows streaming.'); }
+    else { setErr('Deepgram connection closed (code ' + ev.code + ').'); stopAll(); }
+  };
+}
+
+/* ---------- Browser speech engine ---------- */
+function startBrowser(lang) {
+  if (!canBrowser) { setErr('Your browser has no speech recognition. Use Chrome or Edge, or add a Deepgram key.'); stopAll(); return; }
+  if (!lang.sr) { setErr('That language needs a Deepgram key for live speech.'); stopAll(); return; }
+  sr = new SR();
+  sr.lang = lang.sr; sr.continuous = true; sr.interimResults = true;
+  sr.onstart = function () { setStatus('listening \u00B7 browser engine', true); };
+  sr.onresult = function (e) {
+    var live = '';
+    for (var i = e.resultIndex; i < e.results.length; i++) {
+      var r = e.results[i];
+      if (r.isFinal) addCard(r[0].transcript.trim(), null); else live += r[0].transcript;
+    }
+    interim.textContent = live;
+  };
+  sr.onerror = function (e) {
+    if (e.error === 'no-speech' || e.error === 'aborted') return;
+    setErr('Speech recognition error: ' + e.error); stopAll();
+  };
+  sr.onend = function () { if (listening && sr) { try { sr.start(); } catch (e) {} } };
+  try { sr.start(); } catch (e) { setErr('Could not start speech recognition.'); stopAll(); }
+}
+
+/* ---------- Start / stop ---------- */
+function stopAll() {
+  var was = listening;
+  listening = false;
+  if (was) flushBuf();
+  if (keepAlive) { clearInterval(keepAlive); keepAlive = null; }
+  if (recorder && recorder.state !== 'inactive') { try { recorder.stop(); } catch (e) {} }
+  recorder = null;
+  if (ws) {
+    var w = ws; ws = null;
+    try { if (w.readyState === 1) w.send(JSON.stringify({ type: 'CloseStream' })); w.close(); } catch (e) {}
+  }
+  if (sr) { var s = sr; sr = null; s.onend = null; try { s.stop(); } catch (e) {} }
+  if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+  if (audioCtx) { try { audioCtx.close(); } catch (e) {} audioCtx = null; analyser = null; }
+  if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); stream = null; }
+  clearMeter();
+  interim.textContent = '';
+  setStatus('idle', false);
+}
+
+function beginListening() {
+  var lang = findLang(src.value), key = dgKey.value.trim();
+  var useDg = !!(key && lang && lang.dg);
+
+  if (!useDg) {
+    if (src.value === 'auto') { setErr('Auto-detect needs a Deepgram API key.'); return; }
+    if (lang && lang.dg && !(lang.sr && canBrowser)) { setErr('Add a Deepgram API key to use ' + lang.n + '.'); return; }
+    if (!canBrowser) { setErr('No speech engine available. Use Chrome or Edge, or add a Deepgram key.'); return; }
+  }
+
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    setErr('Microphone access needs https or http://localhost, not a file:// page.'); return;
+  }
+  setStatus('requesting microphone\u2026', false);
+  navigator.mediaDevices.getUserMedia({ audio: dev.value ? { deviceId: { exact: dev.value } } : true }).then(function (s) {
+    stream = s; listening = true;
+    loadDevices(); startMeter();
+    function fallback(reason) {
+      if (lang && lang.sr && canBrowser && src.value !== 'auto') { setErr(reason + ' Using the browser engine instead.'); startBrowser(lang); }
+      else { setErr(reason); stopAll(); }
+    }
+    if (useDg) openDeepgram(lang, key, fallback);
+    else startBrowser(lang);
+  }).catch(function (e) {
+    setErr('Microphone unavailable: ' + (e && e.name ? e.name : 'error') + '. Allow mic access and try again.');
+    setStatus('idle', false);
+  });
+}
+
+go.addEventListener('click', function () {
+  setErr('');
+  if (listening) { stopAll(); return; }
+  beginListening();
+});
+
+/* Changing language mid-session restarts with the new setting */
+src.addEventListener('change', function () { if (listening) { stopAll(); beginListening(); } });
+window.addEventListener('beforeunload', stopAll);
+</script>
 </body>
 </html>
